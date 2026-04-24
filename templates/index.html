@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI PDF Summarizer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: #f1f5f9;
+}
+
+/* NAVBAR */
+.navbar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+}
+
+.navbar h3 {
+    font-weight: 600;
+}
+
+.navbar button {
+    background: rgba(255,255,255,0.1);
+    border: none;
+    padding: 8px 18px;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+/* HERO SECTION */
+.hero {
+    height: 320px;
+    background: linear-gradient(135deg, #0f172a, #1e3a8a);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.hero h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    color: #cbd5f5;
+}
+
+/* MAIN CARD */
+.main-card {
+    width: 700px;
+    background: white;
+    margin: -100px auto 40px;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* DROP ZONE */
+.upload-box {
+    border: 2px dashed #a5b4fc;
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.upload-box p {
+    margin: 10px 0;
+    color: #475569;
+}
+
+.file-btn {
+    margin-top: 10px;
+}
+
+.file-btn input {
+    display: none;
+}
+
+.file-btn label {
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.small-text {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+/* SUMMARY */
+.summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.summary-header h3 {
+    font-weight: 600;
+}
+
+.badge {
+    background: #e2e8f0;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.summary-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 15px;
+    min-height: 120px;
+    color: #475569;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+    <h3>PDF SUMMARIZER</h3>
+    <button>About</button>
+</div>
+
+<div class="hero">
+    <h1>AI PDF Summarizer</h1>
+    <p>Upload a PDF file and get an intelligent summary instantly.</p>
+</div>
+
+<div class="main-card">
+
+    <form action="/upload" method="post" enctype="multipart/form-data">
+
+        <div class="upload-box">
+            <p>Drag and drop your PDF here</p>
+            <p>or</p>
+
+            <div class="file-btn">
+                <label for="file-upload">Choose PDF File</label>
+                <input id="file-upload" type="file" name="pdf" required>
+            </div>
+
+            <div class="small-text">Only PDF files are supported</div>
+        </div>
+
+        <button style="
+            width:100%;
+            padding:12px;
+            background:#4f46e5;
+            color:white;
+            border:none;
+            border-radius:10px;
+            cursor:pointer;
+        ">
+            Generate Summary
+        </button>
+
+    </form>
+
+    <div style="margin-top:30px;">
+
+        <div class="summary-header">
+            <h3>Summary</h3>
+            <div class="badge">AI Generated</div>
+        </div>
+
+        <div class="summary-box">
+            {% if summary %}
+                {{ summary }}
+            {% else %}
+                Your summary will appear here after uploading the PDF.
+            {% endif %}
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
